@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SMIT Assignments</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #030303;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            overflow: hidden;
+        }
+
+        .grid {
+            position: fixed;
+            inset: 0;
+            z-index: -4;
+            opacity: .18;
+            background-image:
+                linear-gradient(#ff720015 1px, transparent 1px),
+                linear-gradient(90deg, #ff720015 1px, transparent 1px);
+            background-size: 55px 55px;
+            animation: gridMove 12s linear infinite;
+        }
+
+        .glow {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: .2;
+            z-index: -3;
+            animation: glowMove 9s infinite alternate ease-in-out;
+        }
+
+        .glow1 {
+            background: #ff6500;
+            top: -200px;
+            left: -120px;
+        }
+
+        .glow2 {
+            background: #8b00ff;
+            right: -160px;
+            bottom: -200px;
+            animation-delay: 2s;
+        }
+
+        .glow3 {
+            background: #ff006e;
+            left: 40%;
+            bottom: -300px;
+            animation-delay: 4s;
+        }
+
+        .container {
+            width: 1100px;
+            max-width: 94%;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+            animation: heading 1s ease;
+        }
+
+        .heading span {
+            color: #ff7200;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 6px;
+        }
+
+        .heading h1 {
+            font-size: 52px;
+            margin: 8px 0;
+            background: linear-gradient(90deg, #ff7300, #ff006e, #8b00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .heading p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            position: relative;
+            width: 650px;
+            min-height: 450px;
+            overflow: hidden;
+            border-radius: 28px;
+            background: rgba(12, 12, 12, .9);
+            border: 1px solid #292929;
+            box-shadow:
+                0 25px 80px #000,
+                0 0 50px #ff650012;
+            backdrop-filter: blur(15px);
+            transition: .4s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 30px;
+            background: linear-gradient(120deg,
+                    transparent,
+                    #ff720060,
+                    transparent,
+                    #8b00ff50,
+                    transparent);
+            z-index: -1;
+            animation: borderMove 5s linear infinite;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow:
+                0 30px 90px #000,
+                0 0 45px #ff650025;
+        }
+
+        .image {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+        }
+
+        .card:hover .image img {
+            transform: scale(1.08);
+        }
+
+        .image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(90deg,
+                    transparent 70%,
+                    #ff720012);
+        }
+
+        .image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 35%,
+                    #0c0c0c);
+        }
+
+        .scan {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 35%;
+            height: 100%;
+            z-index: 3;
+            background: linear-gradient(90deg,
+                    transparent,
+                    #ffffff18,
+                    transparent);
+            transform: skewX(-20deg);
+            animation: scan 4s infinite;
+        }
+
+        .content {
+            position: relative;
+            margin-top: -25px;
+            padding: 0 35px 35px;
+            z-index: 4;
+        }
+
+        .number {
+            display: inline-block;
+            padding: 8px 17px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ff7300, #ff006e);
+            box-shadow: 0 5px 20px #ff550030;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            margin: 16px 0 22px;
+        }
+
+        .open {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff7300, #ff006e);
+            transition: .3s ease;
+            box-shadow: 0 8px 25px #ff550025;
+        }
+
+        .open:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 35px #ff550050;
+        }
+
+        .arrow {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid #292929;
+            background: rgba(15, 15, 15, .85);
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .arrow:hover {
+            background: linear-gradient(135deg, #ff7300, #ff006e);
+            transform: scale(1.12);
+            border-color: transparent;
+            box-shadow: 0 0 30px #ff550050;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 27px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            transition: .4s ease;
+        }
+
+        .dot:hover {
+            transform: scale(1.6);
+            background: #777;
+        }
+
+        .dot.active {
+            width: 30px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff7300, #ff006e);
+            box-shadow: 0 0 18px #ff550070;
+        }
+
+        .count {
+            color: #666;
+            margin-top: 15px;
+            font-size: 12px;
+            letter-spacing: 4px;
+        }
+
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            margin-top: 13px;
+            color: #555;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .status i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ff7200;
+            box-shadow: 0 0 12px #ff7200;
+            animation: blink 1.5s infinite;
+        }
+
+        .change-right {
+            animation: right .55s ease;
+        }
+
+        .change-left {
+            animation: left .55s ease;
+        }
+
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            background: #ff7200;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleMove linear infinite;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(110vh) translateX(0);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .6;
+            }
+
+            85% {
+                opacity: .35;
+            }
+
+            100% {
+                transform: translateY(-10vh) translateX(120px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glowMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(100px, 80px) scale(1.2);
+            }
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(55px);
+            }
+        }
+
+        @keyframes borderMove {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scan {
+            0% {
+                left: -100%;
+            }
+
+            45%,
+            100% {
+                left: 150%;
+            }
+        }
+
+        @keyframes heading {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes right {
+            0% {
+                opacity: 0;
+                transform: translateX(70px) scale(.94);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes left {
+            0% {
+                opacity: 0;
+                transform: translateX(-70px) scale(.94);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: .3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles"></div>
+
+    <div class="grid"></div>
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+
+    <div class="container">
+
+        <div class="heading">
+            <span>SMIT • WMA • PROJECTS</span>
+            <h1>ASSIGNMENTS</h1>
+            <p>Web & Mobile Application Development</p>
+        </div>
+
+        <div class="slider">
+
+            <button class="arrow" id="prev">&#10094;</button>
+
+            <div class="card" id="card">
+
+                <div class="image">
+                    <div class="scan"></div>
+
+                    <img id="assignmentImage"
+                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85"
+                        alt="Assignment">
+                </div>
+
+                <div class="content">
+
+                    <span class="number" id="number">
+                        ASSIGNMENT 01
+                    </span>
+
+                    <h2 id="title">
+                        School Formal Letter
+                    </h2>
+
+                    <a href="#" class="open" id="link">
+                        OPEN ASSIGNMENT →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <button class="arrow" id="next">&#10095;</button>
+
+        </div>
+
+        <div class="dots" id="dots"></div>
+
+        <div class="count" id="count">
+            01 / 13
+        </div>
+
+        <div class="status">
+            <i></i>
+            LIVE PROJECT SHOWCASE
+        </div>
+
+    </div>
+
+    <script>
+
+        let current = 0;
+        let direction = 1;
+
+        let assignments = [
+
+            {
+                title: "School Formal Letter",
+                link: "https://docs.google.com/document/d/1t_BrATHjDphWAfH07akC1jnKBSgOtUa-W17cXGFkFkc/edit?tab=t.0",
+                image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Nested Lists",
+                link: "https://docs.google.com/document/d/1AQlaNqqWl4X8aAU__hlfmNeUWvNmUFMrF3w6DKHhXc0/edit?tab=t.0",
+                image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Car Showroom",
+                link: "https://drive.google.com/drive/folders/1MnCZY6wz34oeRQD7pBj2A7YJ8S92sw90?usp=sharing",
+                image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "HTML Tables",
+                link: "https://ayan-aftab.github.io/tableassignment",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Restaurant Website",
+                link: "https://ayan-aftab.github.io/restfood",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "HTML Forms",
+                link: "https://ayan-aftab.github.io/formsassignmet",
+                image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "CSS Cards",
+                link: "https://ayan-aftab.github.io/assi7",
+                image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Website Headers",
+                link: "https://ayan-aftab.github.io/assi8",
+                image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "CSS Login Page",
+                link: "https://ayan-aftab.github.io/assi9",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Photon Website",
+                link: "https://ayan-aftab.github.io/Assignment-10",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Youtube Clone",
+                link: "https://ayan-aftab.github.io/youtube-homepage",
+                image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Buildream Website",
+                link: "https://ayan-aftab.github.io/Buildream-Assignment",
+                image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85"
+            },
+
+            {
+                title: "Industry Website",
+                link: "https://ayan-aftab.github.io/Industry-Assignment",
+                image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85"
+            }
+
+        ];
+
+        const dots = document.getElementById("dots");
+
+        assignments.forEach((item, index) => {
+
+            let dot = document.createElement("div");
+
+            dot.className = "dot";
+
+            dot.addEventListener("click", () => {
+
+                direction = index > current ? 1 : -1;
+
+                current = index;
+
+                showAssignment();
+
+            });
+
+            dots.appendChild(dot);
+
+        });
+
+        function showAssignment() {
+
+            let card = document.getElementById("card");
+
+            card.classList.remove("change-right", "change-left");
+
+            void card.offsetWidth;
+
+            if (direction === 1) {
+                card.classList.add("change-right");
+            } else {
+                card.classList.add("change-left");
+            }
+
+            document.getElementById("number").innerText =
+                "ASSIGNMENT " +
+                String(current + 1).padStart(2, "0");
+
+            document.getElementById("title").innerText =
+                assignments[current].title;
+
+            document.getElementById("link").href =
+                assignments[current].link;
+
+            document.getElementById("assignmentImage").src =
+                assignments[current].image;
+
+            document.getElementById("count").innerText =
+                String(current + 1).padStart(2, "0") +
+                " / 13";
+
+            document.querySelectorAll(".dot").forEach((dot, index) => {
+
+                dot.classList.toggle(
+                    "active",
+                    index === current
+                );
+
+            });
+
+        }
+
+        function next() {
+
+            direction = 1;
+
+            current++;
+
+            if (current >= assignments.length) {
+                current = 0;
+            }
+
+            showAssignment();
+
+        }
+
+        function previous() {
+
+            direction = -1;
+
+            current--;
+
+            if (current < 0) {
+                current = assignments.length - 1;
+            }
+
+            showAssignment();
+
+        }
+
+        document.getElementById("next")
+            .addEventListener("click", next);
+
+        document.getElementById("prev")
+            .addEventListener("click", previous);
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "ArrowRight") {
+                next();
+            }
+
+            if (event.key === "ArrowLeft") {
+                previous();
+            }
+
+        });
+
+        for (let i = 0; i < 45; i++) {
+
+            let particle = document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                5 + Math.random() * 12 + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 10 + "s";
+
+            let size = 1 + Math.random() * 3;
+
+            particle.style.width = size + "px";
+            particle.style.height = size + "px";
+
+            document.getElementById("particles")
+                .appendChild(particle);
+
+        }
+
+        showAssignment();
+
+    </script>
+
+</body>
+
+</html>
