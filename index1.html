@@ -15,13 +15,13 @@
             font-family: Arial, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            min-height: 100vh;
             background: #030303;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow-x: hidden;
         }
 
@@ -78,12 +78,19 @@
         .container {
             width: 1100px;
             max-width: 94%;
+            margin: auto;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 30px 0;
+            padding: 40px 0;
         }
 
         .heading {
-            margin-bottom: 30px;
             animation: heading 1s ease;
         }
 
@@ -95,17 +102,63 @@
         }
 
         .heading h1 {
-            font-size: 52px;
-            margin: 8px 0;
+            font-size: 70px;
+            margin: 15px 0;
             background: linear-gradient(90deg, #ff7300, #ff006e, #8b00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .heading p {
             color: #777;
-            font-size: 14px;
+            font-size: 16px;
+        }
+
+        .start {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 32px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ff7300, #ff006e);
+            transition: .3s;
+            box-shadow: 0 10px 35px #ff550025;
+        }
+
+        .start:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px #ff550050;
+        }
+
+        .showcase {
+            min-height: 100vh;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #ff7200;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-top: 10px;
+        }
+
+        .section-title h2 b {
+            color: #ff7200;
         }
 
         .slider {
@@ -123,33 +176,14 @@
             border-radius: 28px;
             background: rgba(12, 12, 12, .9);
             border: 1px solid #292929;
-            box-shadow:
-                0 25px 80px #000,
-                0 0 50px #ff650012;
+            box-shadow: 0 25px 80px #000;
             backdrop-filter: blur(15px);
-            transition: .4s ease;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border-radius: 30px;
-            background: linear-gradient(120deg,
-                    transparent,
-                    #ff720060,
-                    transparent,
-                    #8b00ff50,
-                    transparent);
-            z-index: -1;
-            animation: borderMove 5s linear infinite;
+            transition: .4s;
         }
 
         .card:hover {
             transform: translateY(-7px);
-            box-shadow:
-                0 30px 90px #000,
-                0 0 45px #ff650025;
+            border-color: #ff7200;
         }
 
         .image {
@@ -162,30 +196,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 1s ease;
+            transition: 1s;
         }
 
         .card:hover .image img {
             transform: scale(1.08);
         }
 
-        .image::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            background:
-                linear-gradient(90deg,
-                    transparent 70%,
-                    #ff720012);
-        }
-
         .image::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(transparent 35%,
-                    #0c0c0c);
+            background: linear-gradient(transparent 35%, #0c0c0c);
         }
 
         .scan {
@@ -195,10 +217,7 @@
             width: 35%;
             height: 100%;
             z-index: 3;
-            background: linear-gradient(90deg,
-                    transparent,
-                    #ffffff18,
-                    transparent);
+            background: linear-gradient(90deg, transparent, #ffffff18, transparent);
             transform: skewX(-20deg);
             animation: scan 4s infinite;
         }
@@ -218,7 +237,6 @@
             font-weight: bold;
             letter-spacing: 2px;
             background: linear-gradient(90deg, #ff7300, #ff006e);
-            box-shadow: 0 5px 20px #ff550030;
         }
 
         .content h2 {
@@ -228,8 +246,6 @@
 
         .open {
             display: inline-flex;
-            align-items: center;
-            gap: 10px;
             padding: 14px 30px;
             border-radius: 30px;
             color: white;
@@ -238,13 +254,11 @@
             font-weight: bold;
             letter-spacing: 1px;
             background: linear-gradient(90deg, #ff7300, #ff006e);
-            transition: .3s ease;
-            box-shadow: 0 8px 25px #ff550025;
+            transition: .3s;
         }
 
         .open:hover {
             transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 12px 35px #ff550050;
         }
 
         .arrow {
@@ -253,24 +267,22 @@
             height: 60px;
             border-radius: 50%;
             border: 1px solid #292929;
-            background: rgba(15, 15, 15, .85);
+            background: #0f0f0fd9;
             color: white;
             font-size: 23px;
             cursor: pointer;
-            transition: .3s ease;
+            transition: .3s;
         }
 
         .arrow:hover {
             background: linear-gradient(135deg, #ff7300, #ff006e);
             transform: scale(1.12);
             border-color: transparent;
-            box-shadow: 0 0 30px #ff550050;
         }
 
         .dots {
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 8px;
             margin-top: 27px;
         }
@@ -281,19 +293,13 @@
             border-radius: 50%;
             background: #333;
             cursor: pointer;
-            transition: .4s ease;
-        }
-
-        .dot:hover {
-            transform: scale(1.6);
-            background: #777;
+            transition: .4s;
         }
 
         .dot.active {
             width: 30px;
             border-radius: 10px;
             background: linear-gradient(90deg, #ff7300, #ff006e);
-            box-shadow: 0 0 18px #ff550070;
         }
 
         .count {
@@ -323,6 +329,141 @@
             animation: blink 1.5s infinite;
         }
 
+        .categories {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .category-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .category {
+            padding: 45px 25px;
+            background: #0b0b0b;
+            border: 1px solid #222;
+            border-radius: 20px;
+            transition: .4s;
+        }
+
+        .category:hover {
+            transform: translateY(-10px);
+            border-color: #ff7200;
+            box-shadow: 0 15px 50px #ff720020;
+        }
+
+        .category .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .category h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .category p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .stats {
+            padding: 70px 0;
+            text-align: center;
+            border-top: 1px solid #151515;
+            border-bottom: 1px solid #151515;
+        }
+
+        .stat-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .stat h2 {
+            color: #ff7200;
+            font-size: 42px;
+        }
+
+        .stat p {
+            color: #666;
+            margin-top: 8px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .all {
+            padding: 100px 0;
+        }
+
+        .all-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .assignment {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 25px;
+            background: #0b0b0b;
+            border: 1px solid #202020;
+            border-radius: 12px;
+            transition: .3s;
+        }
+
+        .assignment:hover {
+            border-color: #ff7200;
+            transform: translateX(6px);
+        }
+
+        .assignment-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .assignment-number {
+            color: #ff7200;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .assignment h3 {
+            font-size: 15px;
+        }
+
+        .assignment a {
+            color: #ff7200;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #151515;
+        }
+
+        footer h2 {
+            font-size: 24px;
+        }
+
+        footer h2 span {
+            color: #ff7200;
+        }
+
+        footer p {
+            color: #555;
+            margin-top: 12px;
+            font-size: 12px;
+        }
+
         .change-right {
             animation: right .55s ease;
         }
@@ -342,7 +483,7 @@
 
         @keyframes particleMove {
             0% {
-                transform: translateY(110vh) translateX(0);
+                transform: translateY(110vh);
                 opacity: 0;
             }
 
@@ -380,16 +521,6 @@
             }
         }
 
-        @keyframes borderMove {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
         @keyframes scan {
             0% {
                 left: -100%;
@@ -416,24 +547,24 @@
         @keyframes right {
             0% {
                 opacity: 0;
-                transform: translateX(70px) scale(.94);
+                transform: translateX(70px);
             }
 
             100% {
                 opacity: 1;
-                transform: translateX(0) scale(1);
+                transform: translateX(0);
             }
         }
 
         @keyframes left {
             0% {
                 opacity: 0;
-                transform: translateX(-70px) scale(.94);
+                transform: translateX(-70px);
             }
 
             100% {
                 opacity: 1;
-                transform: translateX(0) scale(1);
+                transform: translateX(0);
             }
         }
 
@@ -461,62 +592,188 @@
     <div class="glow glow2"></div>
     <div class="glow glow3"></div>
 
-    <div class="container">
+
+    <section class="hero">
 
         <div class="heading">
+
             <span>SMIT • WMA • PROJECTS</span>
-            <h1>ASSIGNMENTS</h1>
+
+            <h1>ASSIGNMENT<br>PORTAL</h1>
+
             <p>Web & Mobile Application Development</p>
+
+            <a href="#showcase" class="start">
+                EXPLORE ASSIGNMENTS ↓
+            </a>
+
         </div>
 
-        <div class="slider">
+    </section>
 
-            <button class="arrow" id="prev">&#10094;</button>
 
-            <div class="card" id="card">
+    <section class="showcase" id="showcase">
 
-                <div class="image">
-                    <div class="scan"></div>
+        <div class="container">
 
-                    <img id="assignmentImage"
-                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85"
-                        alt="Assignment">
+            <div class="section-title">
+                <span>PROJECT SHOWCASE</span>
+                <h2>MY <b>ASSIGNMENTS</b></h2>
+            </div>
+
+            <div class="slider">
+
+                <button class="arrow" id="prev">&#10094;</button>
+
+                <div class="card" id="card">
+
+                    <div class="image">
+
+                        <div class="scan"></div>
+
+                        <img id="assignmentImage"
+                            src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85"
+                            alt="Assignment">
+
+                    </div>
+
+                    <div class="content">
+
+                        <span class="number" id="number">
+                            ASSIGNMENT 01
+                        </span>
+
+                        <h2 id="title">
+                            School Formal Letter
+                        </h2>
+
+                        <a href="index1.html" class="open" id="link">
+                            OPEN ASSIGNMENT →
+                        </a>
+                    </div>
+
                 </div>
 
-                <div class="content">
+                <button class="arrow" id="next">&#10095;</button>
 
-                    <span class="number" id="number">
-                        ASSIGNMENT 01
-                    </span>
+            </div>
 
-                    <h2 id="title">
-                        School Formal Letter
-                    </h2>
+            <div class="dots" id="dots"></div>
 
-                    <a href="#" class="open" id="link">
-                        OPEN ASSIGNMENT →
-                    </a>
+            <div class="count" id="count">
+                01 / 16
+            </div>
 
+            <div class="status">
+                <i></i>
+                LIVE PROJECT SHOWCASE
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="categories">
+
+        <div class="container">
+
+            <div class="section-title">
+                <span>WHAT I HAVE BUILT</span>
+                <h2>PROJECT <b>CATEGORIES</b></h2>
+            </div>
+
+            <div class="category-box">
+
+                <div class="category">
+                    <div class="icon">&lt;/&gt;</div>
+                    <h3>HTML</h3>
+                    <p>
+                        HTML pages, lists, tables, forms and website structures.
+                    </p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">{ }</div>
+                    <h3>CSS</h3>
+                    <p>
+                        Creative layouts, cards, headers, login pages and styling.
+                    </p>
+                </div>
+
+                <div class="category">
+                    <div class="icon">⚡</div>
+                    <h3>WEB PROJECTS</h3>
+                    <p>
+                        Complete websites and practical web development projects.
+                    </p>
                 </div>
 
             </div>
 
-            <button class="arrow" id="next">&#10095;</button>
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="container">
+
+            <div class="stat-box">
+
+                <div class="stat">
+                    <h2>16</h2>
+                    <p>ASSIGNMENTS</p>
+                </div>
+
+                <div class="stat">
+                    <h2>16</h2>
+                    <p>PROJECT TYPES</p>
+                </div>
+
+                <div class="stat">
+                    <h2>100%</h2>
+                    <p>WEB DEVELOPMENT</p>
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="dots" id="dots"></div>
+    </section>
 
-        <div class="count" id="count">
-            01 / 13
+
+    <section class="all">
+
+        <div class="container">
+
+            <div class="section-title">
+                <span>COMPLETE COLLECTION</span>
+                <h2>ALL <b>ASSIGNMENTS</b></h2>
+            </div>
+
+            <div class="all-list" id="allList"></div>
+
         </div>
 
-        <div class="status">
-            <i></i>
-            LIVE PROJECT SHOWCASE
+    </section>
+
+
+    <footer>
+
+        <div class="container">
+
+            <h2>SMIT <span>ASSIGNMENTS</span></h2>
+
+            <p>
+                Web & Mobile Application Development
+            </p>
+
         </div>
 
-    </div>
+    </footer>
+
 
     <script>
 
@@ -527,7 +784,7 @@
 
             {
                 title: "School Formal Letter",
-                link: "https://docs.google.com/document/d/1t_BrATHjDphWAfH07akC1jnKBSgOtUa-W17cXGFkFkc/edit?tab=t.0",
+                link: "index1.html",
                 image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85"
             },
 
@@ -606,15 +863,22 @@
             {
                 title: "Construction Website",
                 link: "https://ayan-aftab.github.io/Construction-Assignment",
-                image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85"
+                image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe68922?auto=format&fit=crop&w=1200&q=85"
             },
+
 
             {
                 title: "Shutter Website",
                 link: "https://ayan-aftab.github.io/Shutter-Assignement",
-                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=85"
+                image: "https://images.unsplash.com/photo-1504917595217-d4dc7ebe68922?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                title: "Responsive Grid Project",
+                link: "https://ayan-aftab.github.io/Grid-Assignment",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=85"
             }
         ];
+
 
         const dots = document.getElementById("dots");
 
@@ -637,6 +901,7 @@
             dots.appendChild(dot);
 
         });
+
 
         function showAssignment() {
 
@@ -667,7 +932,8 @@
 
             document.getElementById("count").innerText =
                 String(current + 1).padStart(2, "0") +
-                " / 13";
+                " / " +
+                String(assignments.length).padStart(2, "0");
 
             document.querySelectorAll(".dot").forEach((dot, index) => {
 
@@ -679,6 +945,7 @@
             });
 
         }
+
 
         function next() {
 
@@ -694,6 +961,7 @@
 
         }
 
+
         function previous() {
 
             direction = -1;
@@ -708,11 +976,13 @@
 
         }
 
+
         document.getElementById("next")
             .addEventListener("click", next);
 
         document.getElementById("prev")
             .addEventListener("click", previous);
+
 
         document.addEventListener("keydown", (event) => {
 
@@ -725,6 +995,36 @@
             }
 
         });
+
+
+        const allList = document.getElementById("allList");
+
+        assignments.forEach((item, index) => {
+
+            allList.innerHTML += `
+
+                <div class="assignment">
+
+                    <div class="assignment-left">
+
+                        <span class="assignment-number">
+                            ${String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <h3>${item.title}</h3>
+
+                    </div>
+
+                    <a href="${item.link}">
+                        OPEN →
+                    </a>
+
+                </div>
+
+            `;
+
+        });
+
 
         for (let i = 0; i < 45; i++) {
 
@@ -750,6 +1050,7 @@
                 .appendChild(particle);
 
         }
+
 
         showAssignment();
 
